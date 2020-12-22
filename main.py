@@ -28,7 +28,6 @@ def make_public_task(task):
     return new_task
 
 
-
 # curl -i -H "Content-Type: application/json" -X GET \
 # http://127.0.0.1:5000/test/api/v1.0/tasks
 
@@ -65,7 +64,7 @@ def create_task():
 
 
 # curl -i -H "Content-Type: application/json" -X PUT -d '{"done":true}' \
-# http://127.0.0.1:5000/test/api/v1.0/tasks/3
+# http://127.0.0.1:5000/test/api/v1.0/tasks/{taskId}
 
 @app.route('/test/api/v1.0/tasks/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
