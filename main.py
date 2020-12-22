@@ -16,7 +16,8 @@ tasks = [
 ]
 
 
-# function that creates URI to identify our tasks
+# Function that creates URI to identify our tasks
+
 def make_public_task(task):
     new_task = {}
     for field in task:
@@ -27,10 +28,17 @@ def make_public_task(task):
     return new_task
 
 
+
+# curl -i -H "Content-Type: application/json" -X GET \
+# http://127.0.0.1:5000/test/api/v1.0/tasks
+
 @app.route('/test/api/v1.0/tasks', methods=['GET'])
 def get_tasks():
     return jsonify({'tasks': [make_public_task(task) for task in tasks]})
 
+
+# curl -i -H "Content-Type: application/json" -X GET \
+# http://127.0.0.1:5000/test/api/v1.0/tasks/{taskId}
 
 @app.route('/test/api/v1.0/tasks/<int:task_id>', methods=['GET'])
 def get_tasks_by_id(task_id):
@@ -72,7 +80,7 @@ def update_task(task_id):
 
 
 # curl -i -H "Content-Type: application/json" -X DELETE \
-# http://127.0.0.1:5000/test/api/v1.0/tasks/TASK_ID
+# http://127.0.0.1:5000/test/api/v1.0/tasks/{taskId}
 
 @app.route('/test/api/v1.0/tasks/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
